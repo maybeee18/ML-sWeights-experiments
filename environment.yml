@@ -24,7 +24,6 @@ dependencies:
     - backcall==0.1.0
     - bleach==3.0.2
     - cachetools==3.0.0
-    - catboost==0.10.2
     - click==7.0
     - cloudpickle==0.8.0
     - cycler==0.10.0
