@@ -1,0 +1,6 @@
+.ipynb_checkpoints
+*.pyc
+data
+*.npy
+*.pkl
+catboost_info
