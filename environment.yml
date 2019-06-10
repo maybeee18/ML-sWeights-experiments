@@ -93,7 +93,7 @@ dependencies:
     - theano==1.0.3
     - toolz==0.9.0
     - tornado==5.1.1
-    - tqdm==4.31.1
+    - tqdm==4.32.1
     - traitlets==4.3.2
     - uproot==3.2.12
     - uproot-methods==0.2.7
