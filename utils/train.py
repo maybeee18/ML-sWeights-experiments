@@ -32,6 +32,18 @@ def train_on_labels_signal_vs_background(x, labels, model):
     return model_
 
 
+def equalizing_split_labels(x, middle_point):
+    distances = np.abs(x - middle_point)
+    threshold = np.median(distances)
+    return distances < threshold
+
+
+def train_cwola(x, masses, midpoint, model):
+    labels = equalizing_split_labels(masses, midpoint)
+    model_ = sklearn.clone(model)
+    return model_.fit(x, labels)
+
+
 def sWeights_to_proba(x, sWeights, model, use_cross_val=False, cv_params={"cv": 4, "n_jobs": 1}):
     if model.get_params()['loss_function'] != 'ConstrainedRegression':
         raise ValueError("Smart training requires catboost with ConstrainedRegression loss")
@@ -65,6 +77,7 @@ def evaluate_regression(args, x_train, y_train, x_test, y_test):
     model_regression.fit(x_train, y_train, sample_weight=weights)
     test_predictions = model_regression.predict(x_test)
     return sklearn.metrics.mean_squared_error(y_test, test_predictions)
+
 
 def perdict_raw(model, *args, **kwargs):
     """

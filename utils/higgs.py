@@ -11,8 +11,9 @@ FEATURES = ["lepton_pT", "lepton_eta",
             "jet_4_btag", "m_jj", "m_jjj", "m_lv",
             "m_jlv", "m_bb", "m_wbb", "m_wwbb"]
 
-
 def load_uci_higgs(file_name, train_test_split_seed=None):
     data_full = pd.read_csv(file_name, names=["label"] + FEATURES, header=None)
-    train, test = train_test_split(data_full, test_size=0.2, shuffle=True, random_state=train_test_split_seed)
+    train, test = train_test_split(data_full, test_size=0.2, shuffle=True,
+                                   random_state=train_test_split_seed,
+                                   stratify=data_full.label)
     return train, test 
